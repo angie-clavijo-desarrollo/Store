@@ -1,0 +1,29 @@
+<h2>Products</h2>
+
+<div *ngFor="let item of products">
+
+  <h3>
+    <a
+      [title]="item.name + ' details'"
+      [routerLink]="['/products', item.id]">
+      {{ item.name }}
+    </a>
+  </h3>
+
+  <p *ngIf="item.description">
+    Description: {{ item.description }}
+  </p>
+
+  <button type="button" (click)="share()">
+    Share
+  </button>
+
+  <!-- PROD LIST is component parent and PROD ALERTS is component child-->
+  <!-- pass the current as input to component using property binding- [] Pass data to a child component-->
+  <!-- pass the output - () Pass data to a parent component -->
+  <app-product-alerts 
+    [product] = "item"
+    (notify) = "onNotify()"
+    > 
+  </app-product-alerts>
+</div>
